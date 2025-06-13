@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct InterestsScrollView: View {
-    var interests = UserSettingsViewModel().onInterests
+    var interests = UserSettingsViewModel().interests.filter { $0.isOn }
     @State private var selectedInterests: String = ""
     @State var viewModel: NewsViewModel
     var body: some View {

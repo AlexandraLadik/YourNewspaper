@@ -19,15 +19,19 @@ struct ArticleFullView: View {
                         .padding()
                         
                     
-                    AsyncImage(url: arcticle.urlToImage) {
-                        image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(maxWidth: .infinity)
-                            .clipShape(RoundedRectangle(cornerRadius: 19.0))
-                            
-                    } placeholder: { }
+                    if let urlString = arcticle.urlToImage, let url = URL(string: urlString) {
+                        AsyncImage(url: url) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(maxWidth: .infinity)
+                                .clipShape(RoundedRectangle(cornerRadius: 19.0))
+                        } placeholder: {
+                            PhotoPlaceholder()
+                        }
+                    } else {
+                        PhotoPlaceholder()
+                    }
                 }.padding(.vertical, 10)
               
                 VStack(alignment: .leading, spacing: 20) {

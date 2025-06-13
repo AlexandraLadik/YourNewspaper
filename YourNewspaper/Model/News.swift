@@ -19,8 +19,8 @@ struct News: Decodable {
         let author: String?
         let title: String
         let description: String?
-        let url: URL
-        let urlToImage: URL?
+        let url: String?
+        let urlToImage: String?
         let publishedAt: String
         let content: String?
        
@@ -29,10 +29,6 @@ struct News: Decodable {
     struct Source: Decodable {
         let name: String
         let id: String?
-        init(name: String, id: String?) {
-            self.name = name
-            self.id = id
-        }
     }
 }
 
@@ -65,19 +61,5 @@ extension News.Article {
 }
 
 
-//    let description: String?
-//    let url: URL?
-//    let category: String?
-//    let language: String?
-//    let country: String?
-  
 
-//class Sources: Decodable {
-//    let status: String
-//    let sources: [Source]
-//    
-//    init(status: String, sources: [Source]) {
-//        self.status = status
-//        self.sources = sources
-//    }
-//}
+

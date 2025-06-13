@@ -14,7 +14,7 @@ struct RouteView: View {
         case .auth(userID: let userID):
             TabView {
                 Tab("For You", systemImage: "house") {
-                    NewsView(viewModel: .init(userID: userID))
+                    NewsView(viewModel: .init(userID: userID), settingsVM: .init())
                 }
                 Tab("Top Stories", systemImage: "newspaper") {
                     TopStoriesView()

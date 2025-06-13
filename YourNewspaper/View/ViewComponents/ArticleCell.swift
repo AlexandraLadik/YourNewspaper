@@ -12,19 +12,22 @@ struct ArticleCell: View {
     var body: some View {
         LazyVStack(alignment: .leading, spacing: 0) {
             VStack {
-                AsyncImage(url: article.urlToImage) {
-                    image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 358, height: 201)
-                        .clipShape(RoundedRectangle(cornerRadius: 12.0))
-                } placeholder: {
-                    Image(systemName: "photo")
-                        .foregroundStyle(.secondary)
-                        .frame(width: 358, height: 201)
-                        .background(Color.clear)
-                        .clipShape(RoundedRectangle(cornerRadius: 12.0))
+                if let urlString = article.urlToImage, let url = URL(string: urlString) {
+                    AsyncImage(url: url) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 358, height: 201)
+                            .clipShape(RoundedRectangle(cornerRadius: 12.0))
+                    } placeholder: {
+                        Image(systemName: "photo")
+                            .foregroundStyle(.secondary)
+                            .frame(width: 358, height: 201)
+                            .background(Color.gray.opacity(0.1))
+                            .clipShape(RoundedRectangle(cornerRadius: 12.0))
+                    }
+                } else {
+                    PhotoPlaceholder()
                 }
             }
             .padding()

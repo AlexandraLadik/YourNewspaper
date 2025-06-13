@@ -11,12 +11,12 @@ struct NewsView: View {
     @State var searchText: String = ""
     @State var viewModel: NewsViewModel
     @State var isPresented: Bool = false
-    @State var settingsVM = UserSettingsViewModel()
+    @State var settingsVM: UserSettingsViewModel
     
     var body: some View {
         NavigationStack {
-            InterestsScrollView(viewModel: viewModel)
             if let articles = viewModel.news?.articles {
+                InterestsScrollView(viewModel: viewModel)
                 ScrollView {
                     ForEach (articles, id: \.title) {
                         article in

@@ -21,9 +21,6 @@ final class UserSettingsViewModel {
         Interests(name: "Medicine", isOn: true)
     ]
    
-    var onInterests: [Interests] {
-            interests.filter { $0.isOn }
-        }
     
     func addNewInterest(name: String) {
         guard !interests.contains(where: { $0.name == name }) else { return }

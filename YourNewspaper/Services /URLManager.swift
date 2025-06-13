@@ -15,6 +15,7 @@ class URLManager {
     
     func createURL(endpoint: Endpoint) -> URL? {
         let urlStr = httpGateway.rawValue + server.rawValue + endpoint.description + apiKey
+        print(urlStr)
         return URL(string: urlStr)
     }
 }
