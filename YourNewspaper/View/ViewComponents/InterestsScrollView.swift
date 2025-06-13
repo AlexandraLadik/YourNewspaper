@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct InterestsScrollView: View {
-    var interests = UserSettingsViewModel().interests.filter { $0.isOn }
+    @State var interestsVM: UserSettingsViewModel
     @State private var selectedInterests: String = ""
     @State var viewModel: NewsViewModel
     var body: some View {
         ScrollView(.horizontal) {
             HStack(spacing: 30) {
-                ForEach(interests) { interest in
+                ForEach(interestsVM.user.interests.filter({ $0.isOn })) { interest in
                     Button(action: {
                         if selectedInterests.contains(interest.name) {
                             selectedInterests.removeAll()
+                           
                         } else {
                             selectedInterests = interest.name
                         }

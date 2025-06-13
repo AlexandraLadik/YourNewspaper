@@ -8,23 +8,15 @@
 import SwiftUI
 
 struct TopStoriesView: View {
-    @State var viewModel = TopStoriesViewModel()
+    @State var viewModel: TopStoriesViewModel
     @State private var selectedCounty: String = "United States"
     var body: some View {
         NavigationStack {
             if let articles = viewModel.news?.articles {
-                ScrollView {
-                    ForEach (articles, id: \.title) {
-                        article in
-                        NavigationLink {
-                            ArticleFullView(arcticle: article)
-                        } label : {
-                            ArticleCell(article: article)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                    }
-                }
-                .scrollIndicators(.hidden)
+                ListOfNews(currentUser: viewModel.currentUser, articles: articles,
+                            onFavorite: { article in  
+                                    viewModel.currentUser.addToFavorites(article: article)
+                                })
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .principal) {
@@ -60,5 +52,5 @@ struct TopStoriesView: View {
     
 }
 #Preview {
-    TopStoriesView(viewModel: .init())
+    TopStoriesView(viewModel: .init(currentUser: .init(name: "", email: "", password: "")))
 }

@@ -8,12 +8,20 @@
 import Foundation
 import SwiftUI
 
+@Observable
 final class Profile {
     var name: String
     let email: String
     let password: String
     let id: String
-    static var guest = Profile(name: "Anonym", email: "anonym", password: "anonym")
+    var interests: [Interests] = [
+        Interests(name: "Business", isOn: true),
+        Interests(name: "Politics", isOn: true),
+        Interests(name: "Sports", isOn: true),
+        Interests(name: "Medicine", isOn: true)
+    ]
+   
+    var favoriteArticles: [News.Article] = []
     
     init(name: String, email: String, password: String, id: String = UUID().uuidString) {
         self.name = name
@@ -22,14 +30,20 @@ final class Profile {
         self.id = id
         
     }
-    
-    
+    func addToFavorites(article: News.Article) {
+        if !favoriteArticles.contains(where: { $0.title == article.title }) {
+            favoriteArticles.append(article)
+        }
+        else {
+            favoriteArticles.removeAll(where: { $0.title == article.title })
+        }
+    }
 }
 @Observable
 final class Interests: Identifiable, Hashable {
     let id = UUID()
     let name: String
-   var isOn: Bool
+    var isOn: Bool
     
     init(name: String, isOn: Bool) {
         self.name = name

@@ -14,20 +14,20 @@ struct RouteView: View {
         case .auth(userID: let userID):
             TabView {
                 Tab("For You", systemImage: "house") {
-                    NewsView(viewModel: .init(userID: userID), settingsVM: .init())
+                    NewsViewModel(userID: userID)
                 }
                 Tab("Top Stories", systemImage: "newspaper") {
-                    TopStoriesView()
+                    TopStoriesView(viewModel: .init())
                 }
                 Tab("Favorites", systemImage: "star") {
-                    
+                    FavoritesView(viewModel: .init())
                 }
             }
             .font(.tabFont)
             .tint(.customBlue)
         
         case .unAuth:
-            SignUpView(viewModel: .init(), coordinator: .init())
+            SignUpView(viewModel: .init(), coordinator: coordinator)
         }
     }
 }

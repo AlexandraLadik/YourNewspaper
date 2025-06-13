@@ -13,6 +13,7 @@ import Foundation
 final class TopStoriesViewModel {
     var news: News?
     var allCountries: [String] = []
+    var currentUser: Profile
   
   
     
@@ -52,7 +53,8 @@ final class TopStoriesViewModel {
         
     }
     
-    init() {
+    init(currentUser: Profile) {
+        self.currentUser = currentUser
         allCountries = getAllCountries()
         fetchDatabyCountry(country: "United States")
     }

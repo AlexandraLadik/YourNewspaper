@@ -32,6 +32,12 @@ struct SignUpView: View {
                         .font(.newsText)
                         .foregroundStyle(.customBlue)
                     Button("Create account") {
+                        Task {
+                            try await viewModel.createAccount(email: self.email, password: self.pass)
+                            if let user = viewModel.currentUser {
+                                coordinator.appState = .auth(userID: user.uid)
+                            }
+                        }
                         
                         name.removeAll()
                         email.removeAll()

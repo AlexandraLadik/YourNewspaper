@@ -20,6 +20,13 @@ class SignUpViewModel {
             
         }
     }
+    func createAccount(email: String, password: String) async throws {
+        let user = try await AuthServices.createUser(email: email, password: password)
+        await MainActor.run {
+            self.currentUser = user
+        
+    }
+    }
     
 }
 

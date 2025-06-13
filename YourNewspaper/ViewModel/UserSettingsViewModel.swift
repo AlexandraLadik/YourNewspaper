@@ -10,26 +10,23 @@ import SwiftUI
 
 @Observable
 final class UserSettingsViewModel {
-    var user: Profile?
+    var user: Profile
     let language = ["English", "Russian", "German", "Italian", "Spanish"]
     var pickedLanguage = "English"
     
-    var interests: [Interests] = [
-        Interests(name: "Business", isOn: true),
-        Interests(name: "Politics", isOn: true),
-        Interests(name: "Sports", isOn: true),
-        Interests(name: "Medicine", isOn: true)
-    ]
-   
+    init(user: Profile, pickedLanguage: String = "English") {
+        self.user = user
+        self.pickedLanguage = pickedLanguage
+    }
     
     func addNewInterest(name: String) {
-        guard !interests.contains(where: { $0.name == name }) else { return }
+        guard !user.interests.contains(where: { $0.name == name }) else { return }
             let newInterest = Interests(name: name, isOn: true)
-            interests.append(newInterest)
+            user.interests.append(newInterest)
     }
     
     func deleteInterest(name: String) {
-        interests.removeAll { $0.name == name }
+        user.interests.removeAll { $0.name == name }
     }
     
 }

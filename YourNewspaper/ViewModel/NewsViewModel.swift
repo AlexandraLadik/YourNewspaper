@@ -13,7 +13,6 @@ class NewsViewModel {
     var searchWord: String = ""
     let sortBy = ["relevancy", "popularity", "publishedAt"]
     var userID: String
-    var currentUser: Profile?
    
     
     init(userID: String) {
@@ -40,4 +39,5 @@ class NewsViewModel {
         }
        
     }
+    
 }

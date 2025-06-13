@@ -20,11 +20,7 @@ struct ArticleCell: View {
                             .frame(width: 358, height: 201)
                             .clipShape(RoundedRectangle(cornerRadius: 12.0))
                     } placeholder: {
-                        Image(systemName: "photo")
-                            .foregroundStyle(.secondary)
-                            .frame(width: 358, height: 201)
-                            .background(Color.gray.opacity(0.1))
-                            .clipShape(RoundedRectangle(cornerRadius: 12.0))
+                        PhotoPlaceholder()
                     }
                 } else {
                     PhotoPlaceholder()
@@ -50,13 +46,8 @@ struct ArticleCell: View {
             .padding(.horizontal)
             
         }
-        
        
-        
             }
         }
-       
-    
-    
-    
+ 
 

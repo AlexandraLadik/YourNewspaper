@@ -23,7 +23,7 @@ struct YourNewspaperApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
-            RouteView()
+            RouteView(coordinator: .init())
                
         }
     }

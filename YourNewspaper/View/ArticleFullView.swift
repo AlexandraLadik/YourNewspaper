@@ -9,15 +9,24 @@ import SwiftUI
 
 struct ArticleFullView: View {
     var arcticle: News.Article
+    var currentUser: Profile
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack {
-                    Text(arcticle.title)
-                        .font(.newsTitle)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                        
+                    HStack {
+                        Text(arcticle.title)
+                            .font(.newsTitle)
+                            .multilineTextAlignment(.center)
+                            .padding()
+                            .padding(.horizontal, 20)
+                        Button {
+                            currentUser.addToFavorites(article: arcticle)
+                        } label: {
+                            Image(systemName: currentUser.favoriteArticles.contains(where: { $0.title == arcticle.title}) ? "star.fill" : "star")
+                                .tint(.yellow)
+                        }
+                    }
                     
                     if let urlString = arcticle.urlToImage, let url = URL(string: urlString) {
                         AsyncImage(url: url) { image in
@@ -55,3 +64,4 @@ struct ArticleFullView: View {
        
     }
 }
+

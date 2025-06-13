@@ -16,22 +16,14 @@ struct NewsView: View {
     var body: some View {
         NavigationStack {
             if let articles = viewModel.news?.articles {
-                InterestsScrollView(viewModel: viewModel)
-                ScrollView {
-                    ForEach (articles, id: \.title) {
-                        article in
-                        NavigationLink {
-                            ArticleFullView(arcticle: article)
-                        } label : {
-                            ArticleCell(article: article)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                    }
-                }
+                InterestsScrollView(interestsVM: settingsVM, viewModel: viewModel)
+                ListOfNews(currentUser: viewModel.currentUser, articles: articles,
+                           onFavorite: { article in
+                                   viewModel.currentUser.addToFavorites(article: article)
+                               })
                 .fullScreenCover(isPresented: $isPresented) {
-                    UserSettingsView(viewModel: settingsVM)
+                    UserSettingsView(viewModel: settingsVM, coordinator: .init())
                     }
-                .scrollIndicators(.hidden)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .principal) {
@@ -56,7 +48,7 @@ struct NewsView: View {
         }
        
         }
+    
     }
 
-       
-    
+
