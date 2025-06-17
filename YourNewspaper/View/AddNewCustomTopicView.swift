@@ -49,7 +49,4 @@ struct AddNewCustomTopicView: View {
     }
 }
     
-    #Preview {
-        AddNewCustomTopicView(viewModel: .init(user: .init(name: "", email: "", password: "")))
-    }
-
+   

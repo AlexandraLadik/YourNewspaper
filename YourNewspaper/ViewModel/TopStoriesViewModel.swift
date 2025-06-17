@@ -13,9 +13,20 @@ import Foundation
 final class TopStoriesViewModel {
     var news: News?
     var allCountries: [String] = []
-    var currentUser: Profile
-  
-  
+    let userID: String
+    var currentUser: Profile = .init(email: "")
+    
+    init(userID: String) {
+            self.userID = userID
+            Task {
+                let profile = try await FirestoreService.fetchProfile(id: userID)
+                await MainActor.run {
+                    self.currentUser = profile
+                }
+            }
+        allCountries = getAllCountries()
+        fetchDatabyCountry(country: "United States")
+    }
     
     func countryNameToISOCode(_ countryName: String) -> String? {
         let locale = Locale(identifier: "en_US")
@@ -53,9 +64,5 @@ final class TopStoriesViewModel {
         
     }
     
-    init(currentUser: Profile) {
-        self.currentUser = currentUser
-        allCountries = getAllCountries()
-        fetchDatabyCountry(country: "United States")
-    }
+   
 }

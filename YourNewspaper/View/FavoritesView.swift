@@ -33,7 +33,4 @@ struct FavoritesView: View {
     
 
 
-#Preview {
-    FavoritesView(viewModel: .init(userID: "", currentUser: .init(name: "", email: "", password: "")))
-}
-        
+     

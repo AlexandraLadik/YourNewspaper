@@ -10,12 +10,17 @@ import SwiftUI
 
 @Observable
 final class UserSettingsViewModel {
-    var user: Profile
+    var user: Profile = .init(email: "")
+    let userID: String
     let language = ["English", "Russian", "German", "Italian", "Spanish"]
     var pickedLanguage = "English"
     
-    init(user: Profile, pickedLanguage: String = "English") {
-        self.user = user
+    init(userID: String, pickedLanguage: String = "English") {
+            self.userID = userID
+            Task {
+                let profile = try await FirestoreService.fetchProfile(id: userID)
+                await MainActor.run { self.user = profile }
+            }
         self.pickedLanguage = pickedLanguage
     }
     
@@ -28,8 +33,13 @@ final class UserSettingsViewModel {
     func deleteInterest(name: String) {
         user.interests.removeAll { $0.name == name }
     }
+   
+    func signOut() async -> Bool {
+           await AuthServices.signOut()
+        
+        }
+    }
     
-}
 
 
 

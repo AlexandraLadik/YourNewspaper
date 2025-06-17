@@ -8,11 +8,10 @@
 import Foundation
 import SwiftUI
 
+
 @Observable
 final class Profile {
-    var name: String
     let email: String
-    let password: String
     let id: String
     var interests: [Interests] = [
         Interests(name: "Business", isOn: true),
@@ -23,10 +22,8 @@ final class Profile {
    
     var favoriteArticles: [News.Article] = []
     
-    init(name: String, email: String, password: String, id: String = UUID().uuidString) {
-        self.name = name
+    init(email: String, id: String = UUID().uuidString) {
         self.email = email
-        self.password = password
         self.id = id
         
     }
@@ -39,6 +36,19 @@ final class Profile {
         }
     }
 }
+
+extension Profile {
+    var representation: [String : Any] {
+        ["email" : email, "id" : id]
+    }
+    convenience init?(_ data: [String : Any]) {
+        guard let id = data["id"] as? String,
+              let email = data["email"] as? String else { return nil }
+        self.init(email: email, id: id)
+    }
+    
+}
+
 @Observable
 final class Interests: Identifiable, Hashable {
     let id = UUID()
@@ -60,3 +70,7 @@ final class Interests: Identifiable, Hashable {
 }
 
 
+enum CustomError: Error {
+    case invalidDocumentSnapshot
+    case invalidDataInSnapshot
+}

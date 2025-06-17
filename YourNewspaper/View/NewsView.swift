@@ -22,7 +22,7 @@ struct NewsView: View {
                                    viewModel.currentUser.addToFavorites(article: article)
                                })
                 .fullScreenCover(isPresented: $isPresented) {
-                    UserSettingsView(viewModel: settingsVM, coordinator: .init())
+                    UserSettingsView(viewModel: .init(userID: viewModel.userID))
                     }
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {

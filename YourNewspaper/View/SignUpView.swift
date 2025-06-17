@@ -12,9 +12,8 @@ struct SignUpView: View {
     @State var name: String = ""
     @State var email: String = ""
     @State var pass: String = ""
-    @State var country: String = ""
     @State var isAuth: Bool = false
-    @Bindable var coordinator: Coordinator
+    @Environment(Coordinator.self) private var coordinator
     var body: some View {
         VStack(spacing: 24) {
             Text(isAuth ? "Sign In" : "Sign Up")
@@ -27,23 +26,21 @@ struct SignUpView: View {
                 
                 if !isAuth {
                     CustomTextField(textInput: $name, placeholder: "UserName", hasEye: false)
-                    CustomTextField(textInput: $country, placeholder: "Country", hasEye: false)
                     Text("By continuing, you agree to the Terms of Use. Read our Privacy Policy.")
                         .font(.newsText)
                         .foregroundStyle(.customBlue)
                     Button("Create account") {
                         Task {
                             try await viewModel.createAccount(email: self.email, password: self.pass)
-                            if let user = viewModel.currentUser {
-                                coordinator.appState = .auth(userID: user.uid)
+                            if let profile = viewModel.profile {
+                                coordinator.appState = .auth(userID: profile.id)
                             }
                         }
                         
                         name.removeAll()
                         email.removeAll()
                         pass.removeAll()
-                        country.removeAll()
-                        
+    
                     }
                     Spacer()
                     Button("Already have an account?") { isAuth = true }
@@ -52,8 +49,8 @@ struct SignUpView: View {
                         Button("Sign in") {
                             Task {
                                 try await viewModel.login(email: self.email, password: self.pass)
-                                if let user = viewModel.currentUser {
-                                    coordinator.appState = .auth(userID: user.uid)
+                                if let user = viewModel.profile {
+                                    coordinator.appState = .auth(userID: user.id)
                                 }
                             }
                         }
@@ -74,5 +71,5 @@ struct SignUpView: View {
     
  
 #Preview {
-    SignUpView(viewModel: .init(), coordinator: .init())
+    SignUpView(viewModel: .init())
 }

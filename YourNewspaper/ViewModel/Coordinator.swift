@@ -9,11 +9,13 @@ import SwiftUI
 
 @Observable final
 class Coordinator {
-    var appState: AppState = .unAuth
+    var appState: AppState = .unAuth {
+        didSet { print("Состояние изменилось:", appState) } 
+    }
     
     init() {
         if let currentUser = AuthServices.currentUser {
-            appState = .auth(userID: currentUser.uid.description)
+            appState = .auth(userID: currentUser.uid)
         } else {
             appState = .unAuth
         }

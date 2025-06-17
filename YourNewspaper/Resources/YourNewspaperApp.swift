@@ -19,12 +19,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct YourNewspaperApp: App {
-    
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
-            RouteView(coordinator: .init())
-               
+                RouteView()
         }
     }
 }

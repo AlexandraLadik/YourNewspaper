@@ -35,6 +35,7 @@
 		916ED33C2D75A15D0065879C /* InterestsScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916ED33B2D75A1400065879C /* InterestsScrollView.swift */; };
 		919908CD2D81A43B0082FEFA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 919908CC2D81A43B0082FEFA /* GoogleService-Info.plist */; };
 		91A4A0DE2DAE6AA600C789D8 /* CustomToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4A0DD2DAE6A9E00C789D8 /* CustomToggle.swift */; };
+		91B741A22E002CA90081D361 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B741A12E002CA00081D361 /* FirestoreService.swift */; };
 		91B9C7742DFC92DB00C41E42 /* PhotoPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9C7732DFC92D000C41E42 /* PhotoPlaceholder.swift */; };
 		91C2F8D72D6F567F0074026B /* PTSerif-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91C2F8D62D6F567F0074026B /* PTSerif-Bold.ttf */; };
 		91C2F8D92D6F56860074026B /* PTSerif-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91C2F8D82D6F56860074026B /* PTSerif-Regular.ttf */; };
@@ -72,6 +73,7 @@
 		916ED33B2D75A1400065879C /* InterestsScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestsScrollView.swift; sourceTree = "<group>"; };
 		919908CC2D81A43B0082FEFA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		91A4A0DD2DAE6A9E00C789D8 /* CustomToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToggle.swift; sourceTree = "<group>"; };
+		91B741A12E002CA00081D361 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		91B9C7732DFC92D000C41E42 /* PhotoPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPlaceholder.swift; sourceTree = "<group>"; };
 		91C2F8D62D6F567F0074026B /* PTSerif-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTSerif-Bold.ttf"; sourceTree = "<group>"; };
 		91C2F8D82D6F56860074026B /* PTSerif-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTSerif-Regular.ttf"; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 		91207C2F2D6B5DF8002DC5AE /* Services  */ = {
 			isa = PBXGroup;
 			children = (
+				91B741A12E002CA00081D361 /* FirestoreService.swift */,
 				911429322D7F018200119F5D /* AuthServices.swift */,
 				91207C342D6B5E1D002DC5AE /* ParsingService.swift */,
 				91207C322D6B5E0F002DC5AE /* URLManager.swift */,
@@ -315,6 +318,7 @@
 				91207C372D6B5EDC002DC5AE /* Profile.swift in Sources */,
 				9156BEF12D7726A9009D28D1 /* SignUpView.swift in Sources */,
 				91A4A0DE2DAE6AA600C789D8 /* CustomToggle.swift in Sources */,
+				91B741A22E002CA90081D361 /* FirestoreService.swift in Sources */,
 				911429332D7F018900119F5D /* AuthServices.swift in Sources */,
 				91DF20B52D7C8E9E00AA9DDE /* UserSettingsViewModel.swift in Sources */,
 				91207C3A2D6B73BB002DC5AE /* NewsViewModel.swift in Sources */,

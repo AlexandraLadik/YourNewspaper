@@ -11,7 +11,7 @@ struct UserSettingsView: View {
     @State var viewModel: UserSettingsViewModel
     @Environment(\.dismiss) var dismiss
     @State private var isPresented = false
-    @State var coordinator: Coordinator
+    @Environment(Coordinator.self) private var coordinator
 
     var body: some View {
         NavigationStack {
@@ -64,7 +64,7 @@ struct UserSettingsView: View {
                 Spacer()
                 Button {
                     Task {
-                        await AuthServices.signOut() ? coordinator.appState = .unAuth : ()
+                        await viewModel.signOut() ? coordinator.appState = .unAuth : print("Cant sign out")
                     }
                 } label: {
                     Text("Sign Out")
@@ -95,6 +95,3 @@ struct UserSettingsView: View {
         }
     
 
-#Preview {
-    UserSettingsView(viewModel: .init(user: .init(name: "", email: "", password: "")), coordinator: .init())
-}

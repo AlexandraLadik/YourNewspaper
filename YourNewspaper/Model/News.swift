@@ -11,9 +11,7 @@ struct News: Decodable {
     var status: String
     var totalResults: Int
     var articles: [Article]
-    
-  
-    
+ 
     struct Article: Decodable {
         let source: Source
         let author: String?
@@ -23,8 +21,7 @@ struct News: Decodable {
         let urlToImage: String?
         let publishedAt: String
         let content: String?
-       
-        
+ 
     }
     struct Source: Decodable {
         let name: String

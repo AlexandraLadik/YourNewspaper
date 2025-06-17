@@ -12,11 +12,17 @@ class NewsViewModel {
     var news: News?
     var searchWord: String = ""
     let sortBy = ["relevancy", "popularity", "publishedAt"]
-    var userID: String
-   
+    let userID: String
+    var currentUser: Profile = .init(email: "")
     
     init(userID: String) {
         self.userID = userID
+        Task {
+            let profile = try await FirestoreService.fetchProfile(id: userID)
+            await MainActor.run {
+                self.currentUser = profile
+            }
+        }
         fetchDatabyWord(searchWord: searchWord)
     }
     
@@ -39,5 +45,5 @@ class NewsViewModel {
         }
        
     }
-    
+    //TODO: Sort by 
 }

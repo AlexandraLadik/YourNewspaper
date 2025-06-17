@@ -51,6 +51,4 @@ struct TopStoriesView: View {
     }
     
 }
-#Preview {
-    TopStoriesView(viewModel: .init(currentUser: .init(name: "", email: "", password: "")))
-}
+
