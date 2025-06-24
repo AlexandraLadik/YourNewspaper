@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddNewCustomTopicView: View {
-    @State var viewModel: UserSettingsViewModel
+    @Bindable var viewModel: UserSettingsViewModel
     @Environment(\.dismiss) var dismiss
     @State private var textInput = ""
     var body: some View {

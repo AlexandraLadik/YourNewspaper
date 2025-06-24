@@ -11,7 +11,7 @@ struct UserSettingsView: View {
     @State var viewModel: UserSettingsViewModel
     @Environment(\.dismiss) var dismiss
     @State private var isPresented = false
-    @Environment(Coordinator.self) private var coordinator
+    @Bindable var coordinator: Coordinator
 
     var body: some View {
         NavigationStack {

@@ -10,7 +10,7 @@ import SwiftUI
 struct ListOfNews: View {
         var currentUser: Profile
         let articles: [News.Article]
-           var onFavorite: (News.Article) -> Void
+        var onFavorite: (News.Article) -> Void
            
            var body: some View {
                List {
@@ -28,13 +28,15 @@ struct ListOfNews: View {
                        }
                        .listRowInsets(EdgeInsets())
                        .swipeActions {
-                           Button {
-                               onFavorite(article)
-                           } label: {
-                               Label("Favorite", systemImage: "star")
+                           withAnimation {
+                               Button {
+                                   onFavorite(article)
+                               } label: {
+                                   Label("Favorite", systemImage: "star")
                                    
+                               }
+                               .tint(currentUser.favoriteArticles.contains(where: { $0.title == article.title}) ? .yellow : .accentColor)
                            }
-                           .tint(currentUser.favoriteArticles.contains(where: { $0.title == article.title}) ? .yellow : .accentColor)
                        }
                    }
                }

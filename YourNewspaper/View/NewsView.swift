@@ -12,6 +12,7 @@ struct NewsView: View {
     @State var viewModel: NewsViewModel
     @State var isPresented: Bool = false
     @State var settingsVM: UserSettingsViewModel
+    @Bindable var coordinator: Coordinator
     
     var body: some View {
         NavigationStack {
@@ -22,7 +23,7 @@ struct NewsView: View {
                                    viewModel.currentUser.addToFavorites(article: article)
                                })
                 .fullScreenCover(isPresented: $isPresented) {
-                    UserSettingsView(viewModel: .init(userID: viewModel.userID))
+                    UserSettingsView(viewModel: settingsVM, coordinator: coordinator)
                     }
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {

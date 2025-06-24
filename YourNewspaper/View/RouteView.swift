@@ -7,14 +7,13 @@
 import SwiftUI
 
 struct RouteView: View {
-    private let coordinator = Coordinator()
+    @State var coordinator = Coordinator()
     var body: some View {
             switch coordinator.appState {
             case .auth(userID: let userID):
                 TabView {
                     Tab("For You", systemImage: "house") {
-                        NewsView(viewModel: .init(userID: userID), settingsVM: .init(userID: userID))
-                            .environment(coordinator)
+                        NewsView(viewModel: .init(userID: userID), settingsVM: .init(userID: userID), coordinator: coordinator)
                     }
                     Tab("Top Stories", systemImage: "newspaper") {
                         TopStoriesView(viewModel: .init(userID: userID))
@@ -27,8 +26,7 @@ struct RouteView: View {
               .tint(.customBlue)
                 
             case .unAuth:
-                SignUpView(viewModel: .init())
-                    .environment(coordinator)
+                SignUpView(viewModel: .init(), coordinator: coordinator)
             }
         }
     
