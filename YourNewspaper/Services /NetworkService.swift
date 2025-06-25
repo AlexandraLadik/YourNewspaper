@@ -13,15 +13,10 @@ class NetworkService {
     
     func fetchNews() async throws -> News {
         guard let url = URLManager.shared.createURL(endpoint: .topHeadlines(country: "us")) else { throw NetworkError.badURL }
-        print("🌐 URL: \(url)")
             let (data, response) = try await session.data(from: url)
         guard (response as! HTTPURLResponse).statusCode == 200 else { throw NetworkError.badResponse }
-        if let httpResponse = response as? HTTPURLResponse {
-            print("📥 Status code: \(httpResponse.statusCode)")
-        }
             guard let news = ParsingService.shared.parse(type: News.self,
-                                                          data: data) else { print("❌ Failed to parse. Raw data:")
-                print(String(data: data, encoding: .utf8) ?? "nil") ; throw NetworkError.invalidData}
+                                                          data: data) else { throw NetworkError.invalidData}
         return news
           
         }

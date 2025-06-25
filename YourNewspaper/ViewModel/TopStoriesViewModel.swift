@@ -14,7 +14,7 @@ final class TopStoriesViewModel {
     var news: News?
     var allCountries: [String] = []
     let userID: String
-    var currentUser: Profile = .init(email: "")
+    var currentUser: Profile = .init(email: "", name: "")
     
     init(userID: String) {
             self.userID = userID

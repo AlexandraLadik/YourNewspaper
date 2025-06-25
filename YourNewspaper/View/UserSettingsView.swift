@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserSettingsView: View {
-    @State var viewModel: UserSettingsViewModel
+    @Bindable var viewModel: UserSettingsViewModel
     @Environment(\.dismiss) var dismiss
     @State private var isPresented = false
     @Bindable var coordinator: Coordinator
@@ -40,28 +40,29 @@ struct UserSettingsView: View {
                         
                     }
                     .toggleStyle(CheckToggleStyle())
-                    .padding(.vertical, 13)
+                  .padding(.vertical, 13)
                     .swipeActions(edge: .trailing) {
-                        Button(action: {viewModel.deleteInterest(name: interest.name) }, label: {
+                        Button(action: { viewModel.deleteInterest(name: interest.name) }, label: {
                             Label("Delete", systemImage: "trash")
                             .tint(.red) })
                     }
                     
                 }
             }
+            .padding(.horizontal, 16)
                 
                 .listStyle(.plain)
                 
-                .padding()
+            Spacer()
                
-            VStack {
+            VStack(spacing: 30) {
                 Button {
                     isPresented = true
                 } label: {
                     Text("Add custom topic")
                         .font(.newsTitle)
                 }
-                Spacer()
+                
                 Button {
                     Task {
                         await viewModel.signOut() ? coordinator.appState = .unAuth : print("Cant sign out")
@@ -70,7 +71,7 @@ struct UserSettingsView: View {
                     Text("Sign Out")
                         .font(.newsTitle)
                 }
-            
+             
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .principal) {

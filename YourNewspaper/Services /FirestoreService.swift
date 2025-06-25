@@ -11,13 +11,14 @@ import FirebaseAuth
 
 actor FirestoreService {
     static let database = Firestore.firestore()
-    static var profilesRef: CollectionReference { database.collection("profiles")}
+    static var profilesRef: CollectionReference { database.collection("profile")}
     
     static func createProfile(user: User) async throws -> Profile {
-        let profile = Profile(email: user.email!, id: user.uid)
+        let profile = Profile(email: user.email!, id: user.uid, name: user.displayName ?? "Anonym")
         try await profilesRef.document(user.uid).setData(profile.representation)
         return profile
     }
+    
     static func fetchProfile(id: String) async throws -> Profile {
         let snapshot = try await profilesRef.document(id).getDocument()
         guard let data = snapshot.data() else {

@@ -10,6 +10,7 @@
 		9114292F2D7EFA5E00119F5D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9114292E2D7EFA5E00119F5D /* FirebaseAuth */; };
 		911429312D7EFA5E00119F5D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 911429302D7EFA5E00119F5D /* FirebaseFirestore */; };
 		911429332D7F018900119F5D /* AuthServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911429322D7F018200119F5D /* AuthServices.swift */; };
+		911810192E0B0A6500C5F2FA /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911810182E0B0A5300C5F2FA /* FavouritesViewModel.swift */; };
 		91207C2E2D6B5938002DC5AE /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91207C2D2D6B5931002DC5AE /* News.swift */; };
 		91207C312D6B5E0B002DC5AE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91207C302D6B5E03002DC5AE /* NetworkService.swift */; };
 		91207C332D6B5E15002DC5AE /* URLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91207C322D6B5E0F002DC5AE /* URLManager.swift */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		911429322D7F018200119F5D /* AuthServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServices.swift; sourceTree = "<group>"; };
+		911810182E0B0A5300C5F2FA /* FavouritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModel.swift; sourceTree = "<group>"; };
 		91207C2D2D6B5931002DC5AE /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		91207C302D6B5E03002DC5AE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		91207C322D6B5E0F002DC5AE /* URLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLManager.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				91207C392D6B73B3002DC5AE /* NewsViewModel.swift */,
 				915218102DC0FAD1009DB2C1 /* TopStoriesViewModel.swift */,
 				91DF20B42D7C8E9000AA9DDE /* UserSettingsViewModel.swift */,
+				911810182E0B0A5300C5F2FA /* FavouritesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				9156BEF12D7726A9009D28D1 /* SignUpView.swift in Sources */,
 				91A4A0DE2DAE6AA600C789D8 /* CustomToggle.swift in Sources */,
 				91B741A22E002CA90081D361 /* FirestoreService.swift in Sources */,
+				911810192E0B0A6500C5F2FA /* FavouritesViewModel.swift in Sources */,
 				911429332D7F018900119F5D /* AuthServices.swift in Sources */,
 				91DF20B52D7C8E9E00AA9DDE /* UserSettingsViewModel.swift in Sources */,
 				91207C3A2D6B73BB002DC5AE /* NewsViewModel.swift in Sources */,

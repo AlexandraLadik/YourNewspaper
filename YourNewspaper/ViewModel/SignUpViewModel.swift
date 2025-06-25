@@ -10,16 +10,22 @@ import FirebaseAuth
 
 @Observable
 class SignUpViewModel {
-    @MainActor
-    func login(email: String, password: String) async throws -> String {
-        let result = try await Auth.auth().signIn(withEmail: email, password: password)
-        return result.user.uid
+    var currentUser: Profile? = nil
+    
+    
+    func login(email: String, password: String) async throws {
+        let profile = try await AuthServices.signIn(email: email, password: password)
+        await MainActor.run {
+            self.currentUser = profile
+        }
     }
     
-    @MainActor
-    func createAccount(email: String, password: String) async throws -> String {
-        let result = try await Auth.auth().createUser(withEmail: email, password: password)
-        return result.user.uid
+    
+    func createAccount(email: String, password: String, name: String) async throws {
+        let profile = try await AuthServices.createUser(email: email, password: password)
+        await MainActor.run {
+            self.currentUser = profile
+        }
     }
 }
 

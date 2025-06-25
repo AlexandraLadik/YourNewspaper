@@ -13,28 +13,30 @@ import SwiftUI
 final class Profile {
     let email: String
     let id: String
+    let name: String
     var interests: [Interests] = [
         Interests(name: "Business", isOn: true),
         Interests(name: "Politics", isOn: true),
         Interests(name: "Sports", isOn: true),
         Interests(name: "Medicine", isOn: true)
     ]
-   
     var favoriteArticles: [News.Article] = []
     
-    init(email: String, id: String = UUID().uuidString) {
+    init(email: String, id: String = UUID().uuidString, name: String) {
         self.email = email
         self.id = id
-        
+        self.name = name
     }
-    func addToFavorites(article: News.Article) {
-        if !favoriteArticles.contains(where: { $0.title == article.title }) {
-            favoriteArticles.append(article)
-        }
-        else {
-            favoriteArticles.removeAll(where: { $0.title == article.title })
-        }
-    }
+    
+    
+     func addToFavorites(article: News.Article) {
+          if !favoriteArticles.contains(where: { $0.title == article.title }) {
+              favoriteArticles.append(article)
+          }
+          else {
+              favoriteArticles.removeAll(where: { $0.title == article.title })
+          }
+      }
 }
 
 extension Profile {
@@ -43,8 +45,11 @@ extension Profile {
     }
     convenience init?(_ data: [String : Any]) {
         guard let id = data["id"] as? String,
-              let email = data["email"] as? String else { return nil }
-        self.init(email: email, id: id)
+              let email = data["email"] as? String,
+              let name = data["name"] as? String
+        else { return nil }
+
+        self.init(email: email, id: id, name: name)
     }
     
 }

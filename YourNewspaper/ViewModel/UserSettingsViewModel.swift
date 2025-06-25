@@ -10,12 +10,12 @@ import SwiftUI
 
 @Observable
 final class UserSettingsViewModel {
-    var user: Profile = .init(email: "")
+    var user: Profile = .init(email: "", name: "")
     let userID: String
     let language = ["English", "Russian", "German", "Italian", "Spanish"]
     var pickedLanguage = "English"
     
-    init(userID: String, pickedLanguage: String = "English") {
+    init(userID: String) {
             self.userID = userID
             Task {
                 let profile = try await FirestoreService.fetchProfile(id: userID)

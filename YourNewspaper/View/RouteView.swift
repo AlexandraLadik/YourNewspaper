@@ -26,7 +26,7 @@ struct RouteView: View {
               .tint(.customBlue)
                 
             case .unAuth:
-                SignUpView(viewModel: .init(), coordinator: coordinator)
+                SignUpView(coordinator: coordinator)
             }
         }
     

@@ -34,33 +34,26 @@ struct SignUpView: View {
                         .foregroundStyle(.customBlue)
                     Button("Create account") {
                         Task {
-                            do {
-                             let userID = try await viewModel.createAccount(email: email, password: pass)
-                                    coordinator.appState = .auth(userID: userID)
-                                    
-                                    
-                                    name = ""
-                                    email = ""
-                                    pass = ""
-                                }
-                             catch {
-                                print("Error creating account:", error.localizedDescription)
-                                // TODO: Здесь можно показать alert с ошибкой
-                            }
+                            try await viewModel.createAccount(email: self.email, password: self.pass, name: self.name)
+                            if let profile = viewModel.currentUser {
+                                coordinator.appState = .auth(userID: profile.id) }
+                            name = ""
+                            email = ""
+                            pass = ""
                         }
                         
                     }
-                    Spacer()
-                    Button("Already have an account?") { isAuth = true }
+                    
                 }
+                Spacer()
+                Button("Already have an account?") { isAuth = true }
+                
                 if isAuth {
                     Button("Sign In") {
                         Task {
-                            do {
-                                let userID = try await viewModel.login(email: email, password: pass)
-                                coordinator.appState = .auth(userID: userID)
-                            } catch {
-                                errorMessage = error.localizedDescription
+                            try await viewModel.login(email: self.email, password: self.pass)
+                            if let profile = viewModel.currentUser {
+                                coordinator.appState = .auth(userID: profile.id)
                             }
                         }
                     }
@@ -74,8 +67,8 @@ struct SignUpView: View {
                     Button("Don't have an account?") { isAuth = false }
                 }
             }
-            
         }
+        
         
         .font(.newsTitle)
         .tint(.black)
@@ -83,8 +76,8 @@ struct SignUpView: View {
         
     }
     
-    
 }
+
  
 #Preview {
     SignUpView(viewModel: .init(), coordinator: .init())

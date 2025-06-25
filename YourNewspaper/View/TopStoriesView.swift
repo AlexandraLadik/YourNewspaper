@@ -15,7 +15,7 @@ struct TopStoriesView: View {
             if let articles = viewModel.news?.articles {
                 ListOfNews(currentUser: viewModel.currentUser, articles: articles,
                             onFavorite: { article in  
-                                    viewModel.currentUser.addToFavorites(article: article)
+                    viewModel.currentUser.addToFavorites(article: article)
                                 })
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {

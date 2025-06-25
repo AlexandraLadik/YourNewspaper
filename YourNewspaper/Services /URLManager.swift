@@ -34,7 +34,6 @@ enum Endpoint: CustomStringConvertible {
     case topHeadlines(country: String)
     case search(word: String)
     case categories(category: String)
-    case sortBy(sortBy: String)
     
     var description: String {
         switch self {
@@ -46,8 +45,6 @@ enum Endpoint: CustomStringConvertible {
             "/everything?q=\(word)"
         case .categories(category: let category):
             "/top-headlines/sources?category=\(category)"
-        case .sortBy(sortBy: let sortBy):
-            "everything?sortBy=\(sortBy)"
         }
         
     }

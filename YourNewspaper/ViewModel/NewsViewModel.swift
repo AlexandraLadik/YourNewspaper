@@ -10,22 +10,23 @@ import SwiftUI
 @Observable final
 class NewsViewModel {
     var news: News?
-    var searchWord: String = ""
-    let sortBy = ["relevancy", "popularity", "publishedAt"]
     let userID: String
-    var currentUser: Profile = .init(email: "")
+    var profile: Profile = .init(email: "", name: "")
+    var favoriteArticles: [News.Article] = []
     
     init(userID: String) {
         self.userID = userID
         Task {
             let profile = try await FirestoreService.fetchProfile(id: userID)
             await MainActor.run {
-                self.currentUser = profile
+                self.profile = profile
             }
         }
-        fetchDatabyWord(searchWord: searchWord)
+        self.favoriteArticles = profile.favoriteArticles
+        fetchDatabyWord(searchWord: "")
     }
     
+   
     
     func fetchDatabyWord(searchWord: String)  {
         if searchWord.isEmpty {
@@ -45,5 +46,7 @@ class NewsViewModel {
         }
        
     }
-    //TODO: Sort by 
-}
+    
+    }
+
+

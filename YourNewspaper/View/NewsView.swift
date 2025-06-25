@@ -4,7 +4,6 @@
 //
 //  Created by Александра Ладик on 23.02.2025.
 //
-
 import SwiftUI
 
 struct NewsView: View {
@@ -18,9 +17,9 @@ struct NewsView: View {
         NavigationStack {
             if let articles = viewModel.news?.articles {
                 InterestsScrollView(interestsVM: settingsVM, viewModel: viewModel)
-                ListOfNews(currentUser: viewModel.currentUser, articles: articles,
+                ListOfNews(currentUser: viewModel.profile, articles: articles,
                            onFavorite: { article in
-                                   viewModel.currentUser.addToFavorites(article: article)
+                    viewModel.profile.addToFavorites(article: article)
                                })
                 .fullScreenCover(isPresented: $isPresented) {
                     UserSettingsView(viewModel: settingsVM, coordinator: coordinator)
@@ -37,7 +36,9 @@ struct NewsView: View {
                         }
                         .tint(.black)
                     }
-                }
+
+                    }
+
             } else { ProgressView("Loading news...") }
             
         }
@@ -53,3 +54,6 @@ struct NewsView: View {
     }
 
 
+#Preview {
+    NewsView(searchText: "", viewModel: .init(userID: ""), isPresented: false, settingsVM: .init(userID: ""), coordinator: .init())
+}
