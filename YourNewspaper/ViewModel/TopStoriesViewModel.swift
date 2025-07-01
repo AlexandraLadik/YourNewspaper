@@ -25,7 +25,7 @@ final class TopStoriesViewModel {
                 }
             }
         allCountries = getAllCountries()
-        fetchDatabyCountry(country: "United States")
+        fetchDatabyCountry(country: "united states")
     }
     
     func countryNameToISOCode(_ countryName: String) -> String? {

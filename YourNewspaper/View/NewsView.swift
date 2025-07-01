@@ -7,7 +7,6 @@
 import SwiftUI
 
 struct NewsView: View {
-    @State var searchText: String = ""
     @State var viewModel: NewsViewModel
     @State var isPresented: Bool = false
     @State var settingsVM: UserSettingsViewModel
@@ -43,10 +42,11 @@ struct NewsView: View {
             
         }
       
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+        .searchable(text: $viewModel.searchtext, placement:
+                .navigationBarDrawer(displayMode: .always))
         .font(.newsText)
-        .onChange(of: searchText) {
-            viewModel.fetchDatabyWord(searchWord: searchText)
+        .onChange(of: viewModel.searchtext) {
+            viewModel.fetchDatabyWord(searchWord: viewModel.searchtext)
         }
        
         }
@@ -55,5 +55,5 @@ struct NewsView: View {
 
 
 #Preview {
-    NewsView(searchText: "", viewModel: .init(userID: ""), isPresented: false, settingsVM: .init(userID: ""), coordinator: .init())
+    NewsView(viewModel: .init(userID: ""), isPresented: false, settingsVM: .init(userID: ""), coordinator: .init())
 }

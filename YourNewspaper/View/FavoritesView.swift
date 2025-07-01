@@ -8,16 +8,13 @@
 import SwiftUI
 
 struct FavoritesView: View {
-    @State var viewModel: NewsViewModel
+    @State var viewModel: FavouritesViewModel
     var body: some View {
         NavigationStack {
             VStack {
-                if !viewModel.favoriteArticles.isEmpty {
-                    ForEach(viewModel.favoriteArticles, id: \.url) { article in
-                        ListOfNews(currentUser: viewModel.profile, articles: viewModel.favoriteArticles, onFavorite: { article in
-                            viewModel.profile.addToFavorites(article: article)
-                                        })
-                    }
+                if !viewModel.profile.favoriteArticles.isEmpty {
+                        ListOfNews(currentUser: viewModel.profile, articles: viewModel.profile.favoriteArticles, onFavorite: { article in
+                            viewModel.profile.addToFavorites(article: article)  })
                 }
                 else {
                     ContentUnavailableView {
@@ -31,7 +28,6 @@ struct FavoritesView: View {
             .navigationTitle("Favorites")
             
         }
-        
         
     }
     

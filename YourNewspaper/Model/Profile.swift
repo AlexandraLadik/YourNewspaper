@@ -30,7 +30,7 @@ final class Profile {
     
     
      func addToFavorites(article: News.Article) {
-          if !favoriteArticles.contains(where: { $0.title == article.title }) {
+         if !(favoriteArticles.contains(where: { $0.title == article.title })) {
               favoriteArticles.append(article)
           }
           else {

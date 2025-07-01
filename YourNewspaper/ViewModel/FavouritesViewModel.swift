@@ -11,8 +11,7 @@ import Foundation
 class FavouritesViewModel {
     var profile: Profile = .init(email: "", name: "")
     let userID: String
-    var favoriteArticles: [News.Article] = []
-    
+   
     init(userID: String) {
         self.userID = userID
         Task {
@@ -21,6 +20,6 @@ class FavouritesViewModel {
                 self.profile = profile
             }
         }
-        self.favoriteArticles = profile.favoriteArticles
+        
     }
 }

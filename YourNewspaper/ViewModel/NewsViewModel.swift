@@ -11,8 +11,9 @@ import SwiftUI
 class NewsViewModel {
     var news: News?
     let userID: String
+    var searchtext = ""
     var profile: Profile = .init(email: "", name: "")
-    var favoriteArticles: [News.Article] = []
+ 
     
     init(userID: String) {
         self.userID = userID
@@ -20,10 +21,11 @@ class NewsViewModel {
             let profile = try await FirestoreService.fetchProfile(id: userID)
             await MainActor.run {
                 self.profile = profile
+                
             }
+            fetchDatabyWord(searchWord: searchtext)
         }
-        self.favoriteArticles = profile.favoriteArticles
-        fetchDatabyWord(searchWord: "")
+        
     }
     
    
