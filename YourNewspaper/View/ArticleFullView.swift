@@ -10,6 +10,7 @@ import SwiftUI
 struct ArticleFullView: View {
     var arcticle: News.Article
     var currentUser: Profile
+    @Bindable var favVM: FavouritesViewModel
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -21,9 +22,11 @@ struct ArticleFullView: View {
                             .padding()
                             .padding(.horizontal, 20)
                         Button {
-                            currentUser.addToFavorites(article: arcticle)
+                            
+                            favVM.toggleFavorite(article: arcticle)
+                            
                         } label: {
-                            Image(systemName: currentUser.favoriteArticles.contains(where: { $0.title == arcticle.title}) ? "star.fill" : "star")
+                            Image(systemName: favVM.favoriteArticles.contains(where: { $0.title == arcticle.title}) ? "star.fill" : "star")
                                 .resizable()
                                 .frame(width: 25, height: 25, alignment: .trailing)
                                 .tint(.yellow)

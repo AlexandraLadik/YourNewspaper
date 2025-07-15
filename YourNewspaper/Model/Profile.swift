@@ -13,45 +13,48 @@ import SwiftUI
 final class Profile {
     let email: String
     let id: String
-    let name: String
     var interests: [Interests] = [
         Interests(name: "Business", isOn: true),
         Interests(name: "Politics", isOn: true),
         Interests(name: "Sports", isOn: true),
         Interests(name: "Medicine", isOn: true)
     ]
-    var favoriteArticles: [News.Article] = []
     
-    init(email: String, id: String = UUID().uuidString, name: String) {
+    init(email: String, id: String = UUID().uuidString) {
         self.email = email
         self.id = id
-        self.name = name
+        self.interests = interests
     }
     
-    
-     func addToFavorites(article: News.Article) {
-         if !(favoriteArticles.contains(where: { $0.title == article.title })) {
-              favoriteArticles.append(article)
-          }
-          else {
-              favoriteArticles.removeAll(where: { $0.title == article.title })
-          }
-      }
 }
-
 extension Profile {
-    var representation: [String : Any] {
-        ["email" : email, "id" : id]
+    var representation: [String: Any] {
+        [
+            "email": email,
+            "id": id,
+            "interests": interests.map { $0.respresentation }
+        ]
     }
-    convenience init?(_ data: [String : Any]) {
+    
+    convenience init?(_ data: [String: Any]) {
         guard let id = data["id"] as? String,
               let email = data["email"] as? String,
-              let name = data["name"] as? String
+              let interestsData = data["interests"] as? [[String: Any]]
         else { return nil }
-
-        self.init(email: email, id: id, name: name)
+        
+        self.init(email: email, id: id)
+        
+        self.interests = interestsData.compactMap { Interests($0) }
+        
+        if self.interests.isEmpty {
+            self.interests = [
+                Interests(name: "Business", isOn: true),
+                Interests(name: "Politics", isOn: true),
+                Interests(name: "Sports", isOn: true),
+                Interests(name: "Medicine", isOn: true)
+            ]
+        }
     }
-    
 }
 
 @Observable
@@ -64,6 +67,18 @@ final class Interests: Identifiable, Hashable {
         self.name = name
       self.isOn = isOn
     }
+    
+    var respresentation: [String : Any] {
+        ["name" : name, "isOn" : isOn]
+    }
+    convenience init?(_ data: [String : Any]) {
+        guard let name = data["name"] as? String,
+              let isOn = data["isOn"] as? Bool
+        else { return nil }
+      
+        self.init(name: name, isOn: isOn)
+    }
+
     static func == (lhs: Interests, rhs: Interests) -> Bool {
         return lhs.id == rhs.id
     }
@@ -73,6 +88,8 @@ final class Interests: Identifiable, Hashable {
     }
     
 }
+
+   
 
 
 enum CustomError: Error {

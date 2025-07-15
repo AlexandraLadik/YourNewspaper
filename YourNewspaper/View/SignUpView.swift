@@ -14,8 +14,8 @@ struct SignUpView: View {
     @State var email: String = ""
     @State var pass: String = ""
     @State var isAuth: Bool = false
-    @State private var errorMessage = ""
     @State private var showErrorAlert = false
+    @State private var errorMessage: String = ""
     @Bindable var coordinator: Coordinator
     var body: some View {
         VStack(spacing: 24) {
@@ -28,37 +28,46 @@ struct SignUpView: View {
                 CustomTextField(textInput: $pass, placeholder: "Password", hasEye: true)
                 
                 if !isAuth {
-                    CustomTextField(textInput: $name, placeholder: "UserName", hasEye: false)
                     Text("By continuing, you agree to the Terms of Use. Read our Privacy Policy.")
                         .font(.newsText)
                         .foregroundStyle(.customBlue)
                     Button("Create account") {
                         Task {
-                            try await viewModel.createAccount(email: self.email, password: self.pass, name: self.name)
+                            try await viewModel.createAccount(email: self.email, password: self.pass)
                             if let profile = viewModel.currentUser {
                                 coordinator.appState = .auth(userID: profile.id) }
-                            name = ""
+                        
                             email = ""
                             pass = ""
                         }
                         
                     }
                     
+                    
+                    Spacer()
+                    Button("Already have an account?") { isAuth = true }
                 }
-                Spacer()
-                Button("Already have an account?") { isAuth = true }
-                
-                if isAuth {
+                else {
                     Button("Sign In") {
+                        guard !email.isEmpty, !pass.isEmpty else {
+                                   errorMessage = "Заполните все поля"
+                                   showErrorAlert = true
+                                   return
+                               }
                         Task {
-                            try await viewModel.login(email: self.email, password: self.pass)
-                            if let profile = viewModel.currentUser {
-                                coordinator.appState = .auth(userID: profile.id)
+                            do {
+                                try await viewModel.login(email: self.email, password: self.pass)
+                                if let profile = viewModel.currentUser {
+                                    coordinator.appState = .auth(userID: profile.id)
+                                }
+                            } catch {
+                                errorMessage = "Неверные учетные данные"
+                                showErrorAlert = true
                             }
                         }
                     }
                     .alert("Error", isPresented: $showErrorAlert) {
-                        Button("OK") { errorMessage = "" }
+                        Button("OK") {  }
                     } message: {
                         Text(errorMessage)
                     }

@@ -10,6 +10,7 @@ import SwiftUI
 struct UserSettingsView: View {
     @Bindable var viewModel: UserSettingsViewModel
     @Environment(\.dismiss) var dismiss
+    @Environment(\.scenePhase) private var scenePhase
     @State private var isPresented = false
     @Bindable var coordinator: Coordinator
 
@@ -91,6 +92,11 @@ struct UserSettingsView: View {
                 }
             }
             
+        }
+        .onChange(of: scenePhase) { newPhase, oldPhase in
+            if newPhase == .inactive {
+                Task { await viewModel.updateProfileInterests() }
+            }
         }
             }
         }

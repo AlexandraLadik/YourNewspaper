@@ -10,13 +10,16 @@ import SwiftUI
 struct TopStoriesView: View {
     @State var viewModel: TopStoriesViewModel
     @State private var selectedCounty: String = "United States"
+    @Environment(Profile.self) var profile
+    @Bindable var favVM: FavouritesViewModel
     var body: some View {
         NavigationStack {
             if let articles = viewModel.news?.articles {
-                ListOfNews(currentUser: viewModel.currentUser, articles: articles,
-                            onFavorite: { article in  
-                    viewModel.currentUser.addToFavorites(article: article)
-                                })
+                ListOfNews(currentUser: profile, articles: articles,
+                           onFavorite: { article in
+                    favVM.toggleFavorite(article: article)
+                }, favVM: favVM)
+                           
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .principal) {
@@ -31,17 +34,8 @@ struct TopStoriesView: View {
                             }
                         }
                     }
-                    
-                    
                 }
-                
-                
-                
-            }
-            
-            
-            else { ProgressView("Loading news...")
-                    }
+            } else { ProgressView("Loading news...") }
             }
         .onChange(of: selectedCounty) {
             Task {

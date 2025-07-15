@@ -4,22 +4,25 @@
 //
 //  Created by Александра Ладик on 23.02.2025.
 //
+
 import SwiftUI
 
 struct NewsView: View {
     @State var viewModel: NewsViewModel
     @State var isPresented: Bool = false
     @State var settingsVM: UserSettingsViewModel
-    @Bindable var coordinator: Coordinator
+    @Bindable var favVM: FavouritesViewModel
+    @Environment(Coordinator.self) var coordinator: Coordinator
+    @Environment(Profile.self) var profile
     
     var body: some View {
         NavigationStack {
             if let articles = viewModel.news?.articles {
                 InterestsScrollView(interestsVM: settingsVM, viewModel: viewModel)
-                ListOfNews(currentUser: viewModel.profile, articles: articles,
+                ListOfNews(currentUser: profile, articles: articles,
                            onFavorite: { article in
-                    viewModel.profile.addToFavorites(article: article)
-                               })
+                    favVM.toggleFavorite(article: article)
+                }, favVM: favVM)
                 .fullScreenCover(isPresented: $isPresented) {
                     UserSettingsView(viewModel: settingsVM, coordinator: coordinator)
                     }
@@ -52,8 +55,3 @@ struct NewsView: View {
         }
     
     }
-
-
-#Preview {
-    NewsView(viewModel: .init(userID: ""), isPresented: false, settingsVM: .init(userID: ""), coordinator: .init())
-}

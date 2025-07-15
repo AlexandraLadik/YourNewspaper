@@ -10,22 +10,10 @@ import SwiftUI
 @Observable final
 class NewsViewModel {
     var news: News?
-    let userID: String
     var searchtext = ""
-    var profile: Profile = .init(email: "", name: "")
- 
     
-    init(userID: String) {
-        self.userID = userID
-        Task {
-            let profile = try await FirestoreService.fetchProfile(id: userID)
-            await MainActor.run {
-                self.profile = profile
-                
-            }
-            fetchDatabyWord(searchWord: searchtext)
-        }
-        
+    init() {
+        fetchDatabyWord(searchWord: searchtext)
     }
     
    

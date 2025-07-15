@@ -28,6 +28,8 @@
 		9137F9CF2D6DBF8D00970979 /* FontLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9137F9CE2D6DBF8600970979 /* FontLibrary.swift */; };
 		9137F9D22D6DC90B00970979 /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9137F9D12D6DC90200970979 /* ArticleCell.swift */; };
 		9137F9D42D6DCEAE00970979 /* RouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9137F9D32D6DCEA500970979 /* RouteView.swift */; };
+		914978BF2E152041002595B3 /* MainRouteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914978BE2E152039002595B3 /* MainRouteStorage.swift */; };
+		914978C12E1520D2002595B3 /* MainRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914978C02E1520CB002595B3 /* MainRouteView.swift */; };
 		915218112DC0FADF009DB2C1 /* TopStoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915218102DC0FAD1009DB2C1 /* TopStoriesViewModel.swift */; };
 		915218132DC0FAEA009DB2C1 /* TopStoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915218122DC0FAE3009DB2C1 /* TopStoriesView.swift */; };
 		9156BEF12D7726A9009D28D1 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9156BEF02D7726A0009D28D1 /* SignUpView.swift */; };
@@ -67,6 +69,8 @@
 		9137F9CE2D6DBF8600970979 /* FontLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontLibrary.swift; sourceTree = "<group>"; };
 		9137F9D12D6DC90200970979 /* ArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
 		9137F9D32D6DCEA500970979 /* RouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteView.swift; sourceTree = "<group>"; };
+		914978BE2E152039002595B3 /* MainRouteStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouteStorage.swift; sourceTree = "<group>"; };
+		914978C02E1520CB002595B3 /* MainRouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouteView.swift; sourceTree = "<group>"; };
 		915218102DC0FAD1009DB2C1 /* TopStoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStoriesViewModel.swift; sourceTree = "<group>"; };
 		915218122DC0FAE3009DB2C1 /* TopStoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStoriesView.swift; sourceTree = "<group>"; };
 		9156BEF02D7726A0009D28D1 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				91E986BE2D7B0E6D004E72FA /* Coordinator.swift */,
+				914978BE2E152039002595B3 /* MainRouteStorage.swift */,
 				9156BEF22D7726B2009D28D1 /* SignUpViewModel.swift */,
 				91207C392D6B73B3002DC5AE /* NewsViewModel.swift */,
 				915218102DC0FAD1009DB2C1 /* TopStoriesViewModel.swift */,
@@ -173,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				9137F9D32D6DCEA500970979 /* RouteView.swift */,
+				914978C02E1520CB002595B3 /* MainRouteView.swift */,
 				9156BEF02D7726A0009D28D1 /* SignUpView.swift */,
 				91207C3B2D6B74A4002DC5AE /* NewsView.swift */,
 				915218122DC0FAE3009DB2C1 /* TopStoriesView.swift */,
@@ -304,6 +310,7 @@
 				91207C2E2D6B5938002DC5AE /* News.swift in Sources */,
 				9137F9D42D6DCEAE00970979 /* RouteView.swift in Sources */,
 				91207C312D6B5E0B002DC5AE /* NetworkService.swift in Sources */,
+				914978BF2E152041002595B3 /* MainRouteStorage.swift in Sources */,
 				915218132DC0FAEA009DB2C1 /* TopStoriesView.swift in Sources */,
 				91207C3C2D6B74A4002DC5AE /* NewsView.swift in Sources */,
 				9156BEF52D772EA1009D28D1 /* CustomTextField.swift in Sources */,
@@ -317,6 +324,7 @@
 				9156BEF32D7726BA009D28D1 /* SignUpViewModel.swift in Sources */,
 				912FB46C2D5378ED00750576 /* YourNewspaperApp.swift in Sources */,
 				91E986BF2D7B0E73004E72FA /* Coordinator.swift in Sources */,
+				914978C12E1520D2002595B3 /* MainRouteView.swift in Sources */,
 				9137F9D22D6DC90B00970979 /* ArticleCell.swift in Sources */,
 				91207C372D6B5EDC002DC5AE /* Profile.swift in Sources */,
 				9156BEF12D7726A9009D28D1 /* SignUpView.swift in Sources */,

@@ -11,13 +11,13 @@ struct ListOfNews: View {
         var currentUser: Profile
         let articles: [News.Article]
         var onFavorite: (News.Article) -> Void
-           
+        @Bindable var favVM: FavouritesViewModel
            var body: some View {
                List {
                    ForEach(articles, id: \.description) { article in
                        ZStack {
                            NavigationLink {
-                               ArticleFullView(arcticle: article, currentUser: currentUser)
+                               ArticleFullView(arcticle: article, currentUser: currentUser, favVM: favVM)
                            } label: {
                                EmptyView()
                            }
@@ -35,7 +35,7 @@ struct ListOfNews: View {
                                    Label("Favorite", systemImage: "star")
                                    
                                }
-                               .tint(currentUser.favoriteArticles.contains(where: { $0.title == article.title}) ? .yellow : .accentColor)
+                               .tint(favVM.favoriteArticles.contains(where: { $0.title == article.title}) ? .yellow : .accentColor)
                            }
                        }
                    }

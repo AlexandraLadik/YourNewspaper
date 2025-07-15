@@ -13,17 +13,9 @@ import Foundation
 final class TopStoriesViewModel {
     var news: News?
     var allCountries: [String] = []
-    let userID: String
-    var currentUser: Profile = .init(email: "", name: "")
     
-    init(userID: String) {
-            self.userID = userID
-            Task {
-                let profile = try await FirestoreService.fetchProfile(id: userID)
-                await MainActor.run {
-                    self.currentUser = profile
-                }
-            }
+    init() {
+           
         allCountries = getAllCountries()
         fetchDatabyCountry(country: "united states")
     }

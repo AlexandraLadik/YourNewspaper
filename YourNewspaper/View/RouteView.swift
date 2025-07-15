@@ -11,20 +11,8 @@ struct RouteView: View {
     var body: some View {
             switch coordinator.appState {
             case .auth(userID: let userID):
-                TabView {
-                    Tab("For You", systemImage: "house") {
-                        NewsView(viewModel: .init(userID: userID), settingsVM: .init(userID: userID), coordinator: coordinator)
-                    }
-                    Tab("Top Stories", systemImage: "newspaper") {
-                        TopStoriesView(viewModel: .init(userID: userID))
-                    }
-                    Tab("Favorites", systemImage: "star") {
-                        FavoritesView(viewModel: .init(userID: userID))
-                    }
-                }
-              .font(.tabFont)
-              .tint(.customBlue)
-                
+                MainRouteView(storage: MainRouteStorage(userID: userID))
+                    .environment(coordinator)
             case .unAuth:
                 SignUpView(coordinator: coordinator)
             }
