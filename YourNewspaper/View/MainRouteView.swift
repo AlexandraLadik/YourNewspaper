@@ -15,7 +15,7 @@ struct MainRouteView: View {
             if let profile = storage.profile {
                 Tab("For You", systemImage: "house") {
                     NewsView(viewModel: .init(),
-                             settingsVM: .init(userID: profile.id), favVM: .init(userId: profile.id))
+                             settingsVM: .init(user: profile, userID: profile.id), favVM: .init(userId: profile.id))
                     .environment(profile)
                 }
                 Tab("Top Stories", systemImage: "newspaper") {

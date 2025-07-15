@@ -11,14 +11,15 @@ import FirebaseFirestore
 
 @Observable
 final class UserSettingsViewModel {
-    var user: Profile = .init(email: "")
+    var user: Profile
     let userID: String
     let language = ["English", "Russian", "German", "Italian", "Spanish"]
     var pickedLanguage = "English"
    
     
-    init(userID: String) {
+    init(user: Profile, userID: String) {
         self.userID = userID
+        self.user = user
        
     }
     
@@ -49,9 +50,9 @@ final class UserSettingsViewModel {
                
                do {
                    try await Firestore.firestore()
-                       .collection("profiles")
+                       .collection("profile")
                        .document(userID)
-                       .updateData(["interests": interestsData])
+                       .setData(["interests": interestsData], merge: true)
                } catch {
                    print("Ошибка сохранения интересов: \(error)")
                }

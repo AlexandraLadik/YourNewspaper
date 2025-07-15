@@ -63,6 +63,11 @@ struct UserSettingsView: View {
                     Text("Add custom topic")
                         .font(.newsTitle)
                 }
+               Button("Сохранить интересы") {
+                    Task {
+                       await viewModel.updateProfileInterests()
+                    }
+                }
                 
                 Button {
                     Task {
@@ -93,7 +98,7 @@ struct UserSettingsView: View {
             }
             
         }
-        .onChange(of: scenePhase) { newPhase, oldPhase in
+        .onChange(of: scenePhase) { newPhase, _ in
             if newPhase == .inactive {
                 Task { await viewModel.updateProfileInterests() }
             }
